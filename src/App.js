@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 
 
 function App() {
 
-  const [randomColor, setRandomColor] = useState(0)
-  const [randomNumber, setRandomNumber] = useState(0)
+
+
   const [div, setDiv] = useState("white")
   const [first, setFirst] = useState(1)
   const [second, setSecond] = useState(1)
@@ -30,12 +30,7 @@ const setWhite = () => {
   // console.log(el + first*1000 + second*1000)
 }
 
-  useEffect(() => {
-    console.log("useEffect")
-    const div = document.querySelector(".box");
 
-
-  },[])
 
 
   const handleChangeFirst = (e) => {
@@ -104,7 +99,7 @@ const setWhite = () => {
       }
 
 
-const start = () => {
+function start() {
 
   console.log(arr)
   console.log("start")
@@ -112,6 +107,7 @@ const start = () => {
      setTimeout(setGreenColor, el + timeStart*1000);
      setTimeout(setColor, el + first*1000 + timeStart*1000);
      setTimeout(setWhite, el + first*1000 + second*1000 + timeStart*1000);
+     return console.log("costam")
    });
  }
 
