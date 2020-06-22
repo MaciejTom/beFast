@@ -12,12 +12,7 @@ function App() {
   const [timeFinish, setTimeFinish] = useState(12);
   const [arr, setArr] = useState();
 
-  // const [info, setInfo] = useState({
-  //     first: 1,
-  //     second: 1,
-  //     timeStart: 5,
-  //     timeFinish: 10
-  //   });
+
 
 const setGreenColor = (arr) => {
   setDiv("green")
