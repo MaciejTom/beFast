@@ -1,0 +1,229 @@
+@mixin buttonBG($bg) {
+  border: 2px solid $bg;
+  color: $bg;
+  &:hover {
+    background-color: $bg;
+    transition: all 0.3s ease-in-out;
+    color: white;
+  }
+}
+body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  font-family: "Roboto", sans-serif;
+  -webkit-animation: slide-in-bck-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: slide-in-bck-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+.App {
+  display: flex;
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 3rem;
+
+    input {
+      transition: all 0.3s ease-in-out;
+      margin: 1rem 0.5rem;
+      width: 200px;
+      display: block;
+      border: none;
+      padding: 2px 0;
+      border-bottom: solid 1px green;
+      transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 96%,
+        green 4%
+      );
+      background-position: -200px 0;
+      background-size: 200px 100%;
+      background-repeat: no-repeat;
+      color: darken(green, 5%);
+      font-size: 1.2rem;
+      &:focus {
+        box-shadow: none;
+        outline: none;
+        background-position: 0 0;
+        &::-webkit-input-placeholder {
+          color: green;
+          font-size: 11px;
+          transform: translateY(-20px);
+          visibility: visible !important;
+        }
+      }
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+  }
+  label {
+    color: white;
+  }
+
+  .colors {
+    justify-content: space-between;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    padding-left: 3rem;
+
+    .numbers {
+      font-family: 'Graduate', cursive;
+      color: white;
+      align-self: center;
+      font-size: 4rem;
+      height: 2rem;
+      margin-bottom: 4rem;
+    }
+    .labels {
+      display: flex;
+      flex-direction: column;
+      div {
+        display: flex;
+
+        label {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: white;
+          text-align: center;
+          cursor: pointer;
+          margin-right: 1rem;
+          margin-bottom: 1rem;
+          width: 160px;
+          height: 70px;
+          background: none;
+          transition: 0.5s;
+          font-size: 24px;
+          color: white;
+          font-family: "Lato", sans-serif;
+          &:hover {
+            border: none;
+            color: white;
+            font-size: 28px;
+            transform: scale(1.1);
+          }
+          &:nth-child(1) {
+            @include buttonBG(red);
+          }
+          &:nth-child(2) {
+            @include buttonBG(saddleBrown);
+          }
+
+          input {
+            display: none;
+            margin-bottom: 3rem;
+            margin-right: 1rem;
+          }
+        }
+        &:nth-child(2) {
+          label {
+            &:nth-child(1) {
+              @include buttonBG(blue);
+            }
+            &:nth-child(2) {
+              @include buttonBG(orange);
+            }
+
+          }
+        }
+        &:nth-child(3) {
+          label {
+            &:nth-child(1) {
+              @include buttonBG(purple);
+            }
+            &:nth-child(2) {
+              @include buttonBG(yellow);
+            }
+          }
+        }
+      }
+    }
+  }
+  .none {
+    display: none;
+  }
+}
+.box {
+  width: 600px;
+  height: 600px;
+  align-self: center;
+  background: white;
+  border-radius: 2rem;
+  color: black;
+  font-size: 3rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  transition: width 1s, height 1s;
+  justify-content: center;
+}
+.start {
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #4b8f29;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 1.2rem;
+
+  padding: 6px 12px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #5b8a3c;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+
+  &:hover {
+    background-color: green;
+  }
+  &:active {
+    position: relative;
+    top: 1px;
+  }
+  &:focus {
+    outline:0;
+  }
+}
+
+.big {
+  font-family: 'Graduate', cursive;
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  transition: width 1s, height 1s;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem 1rem;
+}
+.none {
+  display: none;
+}
+.pulsate {
+  -webkit-animation: heartbeat 5s ease-in-out 2 both;
+  animation: heartbeat 5s ease-in-out 2 both;
+  animation-delay: 2s;
+}
+.pulsateText {
+  font-size: 1rem;
+  align-items: center;
+  animation: blinker 0.7s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
+}
+.noChecked {
+  color: white;
+  height: 1rem;
+  animation: blinker 0.7s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
+  text-align: center;
+  color: red;
+
+}
