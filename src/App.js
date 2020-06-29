@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 
 
 function App() {
@@ -127,9 +127,18 @@ const handleWhoGive = event => {
     brown: { backgroundColor: "saddlebrown", color: "white" },
     blue: { backgroundColor: "blue", color: "white" },
     yellow: { backgroundColor: "yellow", color: "white" },
-    orange: { backgroundColor: "orange", color: "white" },
+    orange: { backgroundColor: "green", color: "white" },
     purple: {background: "purple", color: "white"}
   };
+
+  const [seconds, setSeconds] = useState({seconds: 0})
+
+  const getSeconds = () => {
+    return ('0' + seconds.seconds % 60).slice(-2)
+  }
+  const getMinutes = () => {
+    return Math.floor(seconds.seconds / 60)
+  }
 
 function loop() {
   const x = parseInt(amount);
@@ -191,6 +200,12 @@ function start() {
    setTextInDiv(false)
    setTimeout(() => {setTextInDiv(true)}, 4900)}
    setClick(false)
+
+   console.log(seconds.seconds)
+   console.log(setInterval(function(){
+     setSeconds(prev => ({seconds: prev.seconds + 1}))
+   }, 1000))
+
 }
 
 
@@ -205,7 +220,8 @@ function start() {
    setClassPulsate({
      first: true,
      second: false,
-     third: false})
+     third: false});
+     setSeconds({seconds: 0})
  }
  function big() {
    setClassState({isSwitchOn: !classState.isSwitchOn})
@@ -285,7 +301,8 @@ return (
       className={classState.isSwitchOn ? "box big" : "box"}
       onClick={big}
     >
-      {classState.isSwitchOn ? number : null}
+      {classState.isSwitchOn ? <div><span>{number}</span><span> {getMinutes()}:{getSeconds()}</span></div> : null}
+      {}
       {!classState.isSwitchOn ? (
         <span className={textInDiv ? "pulsateText none" : "pulsateText"}>
           Kliknij aby wejść w tryb pełnoekranowy!
@@ -327,11 +344,11 @@ return (
             />
           </label>
 
-          <label style={colors.includes("orange") ? styles.orange : {}}>
-            orange
+          <label style={colors.includes("green") ? styles.orange : {}}>
+            green
             <input
               type="checkbox"
-              value="orange"
+              value="green"
               onClick={handleWhoGive}
               onChange={handleFourthCheckbox}
             />
@@ -358,11 +375,13 @@ return (
           </label>
         </div>
       </div>
-      <span className={allCheckboxes() ? "noChecked none" : "noChecked"}>
+      <span className={allCheckboxes() ? "noChecked noneVis" : "noChecked"}>
         Nie zaznaczono żadnego koloru!
       </span>
       <div className={classState.isSwitchOn ? "numbers none" : "numbers"}>
-        {number}
+        <span>{getMinutes()}:{getSeconds()}</span>
+        <span>{number}</span>
+
       </div>
     </div>
   </div>

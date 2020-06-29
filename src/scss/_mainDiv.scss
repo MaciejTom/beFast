@@ -9,7 +9,7 @@
 }
 body {
   display: flex;
-  height: 100vh;
+
   justify-content: center;
   align-items: center;
   background: black;
@@ -20,11 +20,18 @@ body {
 }
 .App {
   display: flex;
+  @media #{$tabletS} {
+    flex-direction: column;
+  }
   .inputs {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-right: 3rem;
+    @media #{$tabletS} {
+      order: 2;
+      padding-right: 0;
+    }
 
     input {
       transition: all 0.3s ease-in-out;
@@ -45,6 +52,7 @@ body {
       background-repeat: no-repeat;
       color: darken(green, 5%);
       font-size: 1.2rem;
+
       &:focus {
         box-shadow: none;
         outline: none;
@@ -65,31 +73,82 @@ body {
     input[type="number"] {
       -moz-appearance: textfield;
     }
+    label {
+      &:nth-child(1) {
+        order: 4;
+      }
+      &:nth-child(2) {
+        order: 5;
+      }
+      &:nth-child(3) {
+        order: 6;
+      }
+      &:nth-child(4) {
+        order: 7;
+      }
+      &:nth-child(5) {
+        order: 8;
+      }
+    }
   }
   label {
     color: white;
+    @media #{$tabletS} {
+      justify-content: space-between;
+      display: flex;
+      align-items: center;
+    }
   }
 
   .colors {
     justify-content: space-between;
-    padding: 4rem 2rem;
+    padding: 2rem 0;
+    padding-left: 2rem;
+    padding-bottom: 7rem;
     display: flex;
     flex-direction: column;
     padding-left: 3rem;
+    @media #{$tabletS} {
+      order: 3;
+      display: block;
+      padding: 3rem 0;
+    }
+    span {
+      text-align: center;
+    }
 
     .numbers {
-      font-family: 'Graduate', cursive;
+      font-family: "Graduate", cursive;
       color: white;
       align-self: center;
       font-size: 4rem;
       height: 2rem;
       margin-bottom: 4rem;
+      display: flex;
+      flex-direction: column;
+      @media #{$tabletB} {
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      @media #{$tabletS} {
+        justify-content: space-evenly;
+        flex-direction: row;
+
+
+      }
     }
     .labels {
       display: flex;
       flex-direction: column;
       div {
         display: flex;
+        @media #{$tabletB} {
+          flex-direction: column;
+        }
+        @media #{$tabletS} {
+          flex-direction: row;
+          justify-content: space-around;
+        }
 
         label {
           display: flex;
@@ -107,6 +166,10 @@ body {
           font-size: 24px;
           color: white;
           font-family: "Lato", sans-serif;
+          @media #{$tabletS} {
+            width: 250px;
+
+          }
           &:hover {
             border: none;
             color: white;
@@ -132,9 +195,8 @@ body {
               @include buttonBG(blue);
             }
             &:nth-child(2) {
-              @include buttonBG(orange);
+              @include buttonBG(green);
             }
-
           }
         }
         &:nth-child(3) {
@@ -167,6 +229,11 @@ body {
   align-items: flex-end;
   transition: width 1s, height 1s;
   justify-content: center;
+  @media #{$tabletS} {
+    margin: 1rem 0;
+    order: 1;
+
+  }
 }
 .start {
   background-color: transparent;
@@ -192,19 +259,28 @@ body {
     top: 1px;
   }
   &:focus {
-    outline:0;
+    outline: 0;
   }
 }
 
 .big {
-  font-family: 'Graduate', cursive;
+  font-family: "Graduate", cursive;
   width: 100vw;
   height: 100vh;
   border-radius: 0;
   transition: width 1s, height 1s;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 0.5rem 1rem;
+  margin: 0;
+  div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  @media #{$tabletS} {
+    margin-top: 0;
+  }
 }
 .none {
   display: none;
@@ -225,5 +301,23 @@ body {
   animation: blinker 0.7s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
   text-align: center;
   color: red;
+  padding-bottom: 3rem;
+  align-self: center;
 
+  @media #{$tabletB} {
+    max-width: 10rem;
+    height: 8rem;
+  }
+  @media #{$tabletS} {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 0;
+    height: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 0.8rem;
+  }
+}
+.noneVis {
+  visibility: hidden;
 }
