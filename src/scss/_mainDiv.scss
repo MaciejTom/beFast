@@ -106,15 +106,20 @@ body {
 
   .colors {
     justify-content: space-between;
-    padding: 2rem 0;
+    padding: 2rem 0 8rem 3rem;
     padding-left: 2rem;
     display: flex;
     flex-direction: column;
     padding-left: 3rem;
+    @media #{$tabletB} {
+      padding: 3rem 0 0 2rem;
+
+    }
     @media #{$tabletS} {
       order: 3;
       display: block;
-      padding: 3rem 0;
+      padding: 2rem 0;
+
     }
     span {
       text-align: center;
