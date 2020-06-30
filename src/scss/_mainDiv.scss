@@ -1,17 +1,6 @@
-@mixin buttonBG($bg) {
-  border: 2px solid $bg;
-  color: $bg;
-  &:hover {
-    background-color: $bg;
-    transition: all 0.3s ease-in-out;
-    color: white;
-  }
-}
 body {
   display: flex;
-
   justify-content: center;
-  align-items: center;
   background: black;
   font-family: "Roboto", sans-serif;
   -webkit-animation: slide-in-bck-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
@@ -20,65 +9,83 @@ body {
 }
 .App {
   display: flex;
+  margin-top: 7rem;
+  @media #{$tabletB} {
+
+    margin-top: 3rem;
+  }
+
   @media #{$tabletS} {
     flex-direction: column;
+    margin-top: 0rem;
   }
-  .inputs {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-right: 3rem;
+
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 3rem;
+  @media #{$tabletS} {
+    order: 2;
+    padding-right: 0;
+  }
+  label {
+    color: white;
     @media #{$tabletS} {
-      order: 2;
-      padding-right: 0;
+      justify-content: space-between;
+      display: flex;
+      align-items: center;
     }
+  }
 
-    input {
-      transition: all 0.3s ease-in-out;
-      margin: 1rem 0.5rem;
-      width: 200px;
-      display: block;
-      border: none;
-      padding: 2px 0;
-      border-bottom: solid 1px green;
-      transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-      background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0) 96%,
-        green 4%
-      );
-      background-position: -200px 0;
-      background-size: 200px 100%;
-      background-repeat: no-repeat;
-      color: darken(green, 5%);
-      font-size: 1.2rem;
+  input {
+    transition: all 0.3s ease-in-out;
+    margin: 1rem 0.5rem;
+    width: 200px;
+    display: block;
+    border: none;
+    padding: 2px 0;
+    border-bottom: solid 1px green;
+    transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 96%,
+      green 4%
+    );
+    background-position: -200px 0;
+    background-size: 200px 100%;
+    background-repeat: no-repeat;
+    color: darken(green, 5%);
+    font-size: 1.2rem;
 
-      &:focus {
-        box-shadow: none;
-        outline: none;
-        background-position: 0 0;
-        &::-webkit-input-placeholder {
-          color: green;
-          font-size: 11px;
-          transform: translateY(-20px);
-          visibility: visible !important;
-        }
+    &:focus {
+      box-shadow: none;
+      outline: none;
+      background-position: 0 0;
+      &::-webkit-input-placeholder {
+        color: green;
+        font-size: 11px;
+        transform: translateY(-20px);
+        visibility: visible !important;
       }
     }
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-    input[type="number"] {
-      -moz-appearance: textfield;
-    }
-    @media #{$tabletS} {
-
-
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  @media #{$tabletS} {
     label {
       &:nth-child(1) {
         order: 4;
+        margin-top: 1rem;
+
       }
       &:nth-child(2) {
         order: 5;
@@ -94,141 +101,180 @@ body {
       }
     }
   }
+  .pulsate {
+    -webkit-animation: heartbeat 5s ease-in-out 2 both;
+    animation: heartbeat 5s ease-in-out 2 both;
+    animation-delay: 2s;
   }
-  label {
-    color: white;
-    @media #{$tabletS} {
-      justify-content: space-between;
-      display: flex;
-      align-items: center;
+  .start {
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid #4b8f29;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 1.2rem;
+    padding: 6px 12px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #5b8a3c;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+
+    &:hover {
+      background-color: green;
     }
-  }
-
-  .colors {
-    justify-content: space-between;
-    padding: 2rem 0 8rem 3rem;
-    padding-left: 2rem;
-    display: flex;
-    flex-direction: column;
-    padding-left: 3rem;
-    @media #{$tabletB} {
-      padding: 3rem 0 0 2rem;
-
+    &:active {
+      position: relative;
+      top: 1px;
     }
-    @media #{$tabletS} {
-      order: 3;
-      display: block;
-      padding: 2rem 0;
-
+    &:focus {
+      outline: 0;
     }
-    span {
-      text-align: center;
-    }
-
-    .numbers {
-      font-family: "Graduate", cursive;
-      color: white;
-      align-self: center;
-      font-size: 4rem;
-      height: 2rem;
-      margin-bottom: 4rem;
-      display: flex;
-      flex-direction: column;
-      @media #{$tabletB} {
-        flex-direction: column;
-        justify-content: space-around;
-      }
-      @media #{$tabletS} {
-        justify-content: space-evenly;
-        flex-direction: row;
-
-
-      }
-    }
-    .labels {
-      display: flex;
-      flex-direction: column;
-      div {
-        display: flex;
-        @media #{$tabletB} {
-          flex-direction: column;
-        }
-        @media #{$tabletS} {
-          flex-direction: row;
-          justify-content: space-around;
-        }
-
-        label {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background: white;
-          text-align: center;
-          cursor: pointer;
-          margin-right: 1rem;
-          margin-bottom: 1rem;
-          width: 160px;
-          height: 70px;
-          background: none;
-          transition: 0.5s;
-          font-size: 24px;
-          color: white;
-          font-family: "Lato", sans-serif;
-          @media #{$tabletB} {
-            height: 60px;
-
-
-          }
-          @media #{$tabletS} {
-            width: 250px;
-
-          }
-          &:hover {
-            border: none;
-            color: white;
-            font-size: 28px;
-            transform: scale(1.1);
-          }
-          &:nth-child(1) {
-            @include buttonBG(red);
-          }
-          &:nth-child(2) {
-            @include buttonBG(saddleBrown);
-          }
-
-          input {
-            display: none;
-            margin-bottom: 3rem;
-            margin-right: 1rem;
-          }
-        }
-        &:nth-child(2) {
-          label {
-            &:nth-child(1) {
-              @include buttonBG(blue);
-            }
-            &:nth-child(2) {
-              @include buttonBG(green);
-            }
-          }
-        }
-        &:nth-child(3) {
-          label {
-            &:nth-child(1) {
-              @include buttonBG(purple);
-            }
-            &:nth-child(2) {
-              @include buttonBG(yellow);
-            }
-          }
-        }
-      }
-    }
-  }
-  .none {
-    display: none;
   }
 }
+
+.colors {
+  justify-content: space-between;
+  padding: 2rem 0 8rem 3rem;
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  padding-left: 3rem;
+  @media #{$tabletB} {
+    padding: 3rem 0 0 2rem;
+  }
+  @media #{$tabletS} {
+    order: 3;
+    display: block;
+    padding: 2rem 0;
+  }
+  .labels {
+    display: flex;
+    flex-direction: column;
+    div {
+      display: flex;
+      @media #{$tabletB} {
+        flex-direction: column;
+      }
+      @media #{$tabletS} {
+        flex-direction: row;
+        justify-content: space-around;
+      }
+
+      label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        text-align: center;
+        cursor: pointer;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+        width: 160px;
+        height: 70px;
+        background: none;
+        transition: 0.5s;
+        font-size: 24px;
+        color: white;
+        font-family: "Lato", sans-serif;
+        @media #{$tabletB} {
+          height: 60px;
+        }
+        @media #{$tabletS} {
+          width: 250px;
+        }
+        &:hover {
+          border: none;
+          color: white;
+          font-size: 28px;
+          transform: scale(1.1);
+        }
+        &:nth-child(1) {
+          @include buttonBG(red);
+        }
+        &:nth-child(2) {
+          @include buttonBG(saddleBrown);
+        }
+
+        input {
+          display: none;
+          margin-bottom: 3rem;
+          margin-right: 1rem;
+        }
+      }
+      &:nth-child(2) {
+        label {
+          &:nth-child(1) {
+            @include buttonBG(blue);
+          }
+          &:nth-child(2) {
+            @include buttonBG(green);
+          }
+        }
+      }
+      &:nth-child(3) {
+        label {
+          &:nth-child(1) {
+            @include buttonBG(purple);
+          }
+          &:nth-child(2) {
+            @include buttonBG(yellow);
+          }
+        }
+      }
+    }
+  }
+  .noChecked {
+    color: white;
+    height: 1rem;
+    animation: blinker 0.7s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
+    text-align: center;
+    color: red;
+    padding-bottom: 3rem;
+    align-self: center;
+
+    @media #{$tabletB} {
+      max-width: 10rem;
+      height: 8rem;
+    }
+    @media #{$tabletS} {
+      max-width: 100%;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 0;
+      height: 0;
+      padding-top: 0.5rem;
+      padding-bottom: 0.8rem;
+    }
+  }
+  .noneVis {
+    visibility: hidden;
+  }
+  .numbers {
+    font-family: "Graduate", cursive;
+    color: white;
+    align-self: center;
+    font-size: 4rem;
+    height: 2rem;
+    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    @media #{$tabletB} {
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    @media #{$tabletS} {
+      justify-content: space-evenly;
+      flex-direction: row;
+    }
+  }
+}
+.none {
+  display: none;
+}
+
 .box {
   width: 600px;
   height: 600px;
@@ -245,37 +291,13 @@ body {
   @media #{$tabletS} {
     margin: 1rem 0;
     order: 1;
-
+  }
+  .pulsateText {
+    font-size: 1rem;
+    align-items: center;
+    animation: blinker 0.7s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
   }
 }
-.start {
-  background-color: transparent;
-  border-radius: 4px;
-  border: 1px solid #4b8f29;
-  display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: Arial;
-  font-size: 1.2rem;
-
-  padding: 6px 12px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #5b8a3c;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-
-  &:hover {
-    background-color: green;
-  }
-  &:active {
-    position: relative;
-    top: 1px;
-  }
-  &:focus {
-    outline: 0;
-  }
-}
-
 .big {
   font-family: "Graduate", cursive;
   width: 100vw;
@@ -295,42 +317,7 @@ body {
     margin-top: 0;
   }
 }
+
 .none {
   display: none;
-}
-.pulsate {
-  -webkit-animation: heartbeat 5s ease-in-out 2 both;
-  animation: heartbeat 5s ease-in-out 2 both;
-  animation-delay: 2s;
-}
-.pulsateText {
-  font-size: 1rem;
-  align-items: center;
-  animation: blinker 0.7s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
-}
-.noChecked {
-  color: white;
-  height: 1rem;
-  animation: blinker 0.7s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
-  text-align: center;
-  color: red;
-  padding-bottom: 3rem;
-  align-self: center;
-
-  @media #{$tabletB} {
-    max-width: 10rem;
-    height: 8rem;
-  }
-  @media #{$tabletS} {
-    max-width: 100%;
-    display: flex;
-    justify-content: center;
-    padding-bottom: 0;
-    height: 0;
-    padding-top: 0.5rem;
-    padding-bottom: 0.8rem;
-  }
-}
-.noneVis {
-  visibility: hidden;
 }
